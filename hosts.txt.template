@@ -1,0 +1,14 @@
+#Enter lines in the following format, with a tab between the IP address
+#and the regular expression:
+#
+#1.2.3.4	^.*?\.domain.com$
+#
+#Domains are always parsed with a leading period (.).  Example:
+#google.com		.google.com
+#www.google.com		.www.google.com
+#
+#If an IP address is not matched on the DNS server will attempt to resolve it.
+#Source NameServer information will be stripped and all requests will appear
+#to originate from this server.  This server is only equipped to handle A 
+#records, although for the most part you'll still get working results when
+#querying CNAME or MX records.
