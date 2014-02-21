@@ -213,17 +213,16 @@ if __name__ == '__main__':
         with open('hosts.txt') as file:
             line = file.readline()
             while line:                
-                if line.strip().startswith('#'): 
-          	    continue
-
-                if "\t" in line:
-                    ip, host_regex = line.strip().split("\t", 1)
-                    print 'Loaded rule: {0} -> {1}'.format(host_regex, ip)
-                    resolvers.append({
-                        'regex_raw': host_regex.strip("\t"),
-                        'regex': re.compile(host_regex.strip("\t"), re.IGNORECASE),
-                        'ip': ip.strip("\t")
-                    })
+                if not line.strip().startswith('#'): 
+                    if "\t" in line:
+                        ip, host_regex = line.strip().split("\t", 1)
+                        print 'Loaded rule: {0} -> {1}'.format(host_regex, ip)
+                        resolvers.append({
+                            'regex_raw': host_regex.strip("\t"),
+                            'regex': re.compile(host_regex.strip("\t"), re.IGNORECASE),
+                            'ip': ip.strip("\t")
+                        })
+                
                 line = file.readline()
     except Exception, e:
         print "Failed to parse hosts.txt: ", e
